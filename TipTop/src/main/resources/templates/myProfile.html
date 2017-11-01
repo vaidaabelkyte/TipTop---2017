@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="header :: header" />
+<link href="/css/styles.css" rel="stylesheet" />
+
+<body>
+	<div th:replace="header :: navbar" />
+
+	<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-8">
+            <h2 class="section-headline">
+                <h2 class="section-headline">
+                    <span th:text="${#strings.toUpperCase(user.username)}"></span>
+                </h2>
+            </h2>
+        </div>
+        <div class="col-xs-4">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 60px;">
+        <div class="col-xs-9 col-xs-offset-3">
+
+            <!-- Tab panels -->
+            <div class="tab-content">
+
+                <!-- Edit user information -->
+                <div class="tab-pane fade" id="tab-1"
+                     th:classappend="${classActiveEdit}? 'in active'">
+                    <div class="panel-group">
+                        <div class="panel panel-default" style="border: none;">
+                            <div class="panel-body">
+                                <form th:action="@{/updateUserInfo}" method="post">
+                                    <input type="hidden" name="id" th:value="${user.id}" />
+
+                                    <div class="bg-info" th:if="${updateUserInfo}">User info
+                                        updated.
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="firstName">First Name</label> <input
+                                                    type="text" class="form-control" id="firstName"
+                                                    name="firstName" th:value="${user.firstName}"/>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="lastName">Last Name</label> <input type="text"
+                                                                                               class="form-control"
+                                                                                               id="lastName"
+                                                                                               name="lastName"
+                                                                                               th:value="${user.lastName}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="userName">Username</label><input type="text"
+                                                                                        class="form-control"
+                                                                                        id="userName" name="username"
+                                                                                        th:value="${user.username}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currentPassword">Current Password</label><input
+                                            type="text" class="form-control" id="currentPassword"
+                                            name="currentPassword" th:value="${currentPassword}"/>
+                                    </div>
+                                   
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label><input
+                                            type="text" class="form-control" id="email" name="email"
+                                            th:value="${user.email}"/>
+                                    </div>
+                                                       <div class="form-group">
+                                        <label for="txtNewPassword">Password</label><input
+                                            type="password" class="form-control" id="txtNewPassword"
+                                            name="newPassword"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="txtConfirmPassword">Confirm Password</label><input
+                                            type="password" class="form-control" id="txtConfirmPassword"/>
+                                    </div>
+                                  
+
+                                    <button type="submit" class="btn btn-primary">save
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of container -->
+
+
+	<div th:replace="header :: body-bottom-scripts"/>
+</body>
+</html>
