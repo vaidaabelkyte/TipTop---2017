@@ -3,6 +3,7 @@ package com.backEnd.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.backEnd.domain.security.Food;
 import com.backEnd.domain.security.FoodService;
-import com.backEnd.domain.security.UserService;
 
 
 @Controller
@@ -55,7 +55,8 @@ public class FoodController {
 	
 	@RequestMapping("/foodList")
 	public String foodList(Model model) {
-		/*List<Food> foodList =foodService.findAll();*/
+		List<Food> foodList =foodService.findAll();
+		model.addAttribute("foodList", foodList);
 		
 		return "foodList";
 		

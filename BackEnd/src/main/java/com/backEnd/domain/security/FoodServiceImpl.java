@@ -1,5 +1,7 @@
 package com.backEnd.domain.security;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,10 @@ public class FoodServiceImpl implements FoodService {
 	
 	public Food save(Food food){
 		return foodRepository.save(food);
+	}
+	
+	public List<Food> findAll() {
+		return (List<Food>) foodRepository.findAll();
 	}
 }
 

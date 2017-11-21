@@ -7,8 +7,38 @@
 	<div th:replace="header :: navbar" />
 
 
-<h1>menu</h1>
-	
+	<h1>menu</h1>
+	<div class="container">
+		<div class="table-responsive">
+			<table id="foodListTable"
+				class="table table-bordered table-hover table-striped">
+				<thead>
+				<tr>
+				<th>name</th>
+				<th>type</th>
+				<th>category</th>
+				<th>calories</th>
+				<th>price</th>
+				<th>active?</th>
+				<th>action</th>
+				</tr>
+				</thead>
+				
+				<tbody>
+				<tr data-th-each="food : ${foodList}">
+				
+				<td th:text="${food.foodName}"></td>
+				<td th:text="${food.type}"></td>
+				<td th:text="${food.category}"></td>
+				<td th:text="${food.numberOfCalories}"></td>
+				<td th:text="${food.price}"></td>
+				<td th:text="${food.active}"></td>
+				<td>delete</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
 
 	<div th:replace="header :: body-bottom-scripts" />
