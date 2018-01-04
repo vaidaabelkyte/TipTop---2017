@@ -8,62 +8,63 @@
 	<div th:replace="header :: navbar" />
 
 	<div class="container">
-		<div class="row" style="margin-bottom: -100px;">
-			<div class="col-xs-8">
-				<h2 class="section-headline">
-					<h2 class="section-headline">
-						<span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'MENU'"></span>
-					</h2>
-				</h2>
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-8">
+            <h2 class="section-headline">
+                <h2 class="section-headline">
+                    <span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'Menu'"></span>
+                </h2>
+            </h2>
+        </div>
+       
+    </div>
+    <hr
+            style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;"/>
+   
+    <div class="row" style="margin-top: 60px;">
+        <div class="col-xs-9 col-xs-offset-3">
+			<div th:if="${emptyList}">
+				<h5 style="font-style: italic;">Oops, no result is found. Try something else or try again later.</h5>
 			</div>
-			<div class="col-xs-4"></div>
-		</div>
-		<div class="row" style="margin-top: 60px;">
-			<div class="col-xs-9 col-xs-offset-3">
-
-				<div th:if="${emptyList}">
-					<h5>not found</h5>
-				</div>
-
-				<table border="0" id="foodList">
-					<thead>
-						<tr>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="food-item" data-th-each="food : ${foodList}">
-							<td th:if="${food != null}">
-								<div class="row">
-									<div class="col-xs-3">
-										<img class="img-responsive menu-food"
-											th:src="#{adminPath}+@{/image/food}+${food.id}+'.png'" />
-									</div>
-
-									<div class="col-xs-9">
-										<h4 th:text="food.foodName"></h4>
-										<span th:text="food.type"></span> 
-										 <span
-											th:text="${food.numberOfCalories}"><span>Calories</span></span>
-										<span style="font-six =ze: x-large; color: #db3208;">Euro</span>
-											
-											<p th:text="food.description">
-											</p>
-
-
-
-									</div>
-
+			
+			<table border="0" id="foodList">
+				<thead><tr><th></th></tr></thead>
+				<tbody>
+				<tr class="food-item" data-th-each="food : ${foodList}">
+					<td>
+						<div th:if="${food != null}">
+							<div class="row">
+								<div class="col-xs-3">
+									<img class="img-responsive shelf-food" th:src="#{adminPath}+@{/image/food/}+${food.id}+'.png'"/>
 								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+								<div class="col-xs-9">
+									<h4 th:text="${food.foodName}"></h4>
+									
+									<span th:text="${food.type}"></span>
+									<span th:text="${#strings.capitalize(food.category)}"></span>
+									<span th:text="${food.numberOfCalories}"><span> calories</span></span>
+									<span style="font-size:x-large;color:#db3208;">$<span
+									th:text="${#numbers.formatDecimal(food.price, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+									
+									
+									<p th:text="${#strings.abbreviate(food.description, 500)}"></p>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+            
 
-			</div>
-		</div>
-	</div>
-	<!-- end of container -->
+            
+
+
+            
+        </div>
+    </div>
+</div>
+<!-- end of container -->
 
 
 	<div th:replace="header :: body-bottom-scripts" />
