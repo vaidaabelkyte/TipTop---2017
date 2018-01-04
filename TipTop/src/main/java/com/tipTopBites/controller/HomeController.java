@@ -1,6 +1,7 @@
 package com.tipTopBites.controller;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tipTopBites.domain.security.Food;
+import com.tipTopBites.domain.security.FoodService;
 import com.tipTopBites.domain.security.PasswordResetToken;
 import com.tipTopBites.domain.security.Role;
 import com.tipTopBites.domain.security.User;
@@ -45,6 +48,12 @@ public class HomeController {
 	
 	@Autowired
 	private UserSecurityService userSecurityService;
+	
+	
+	@Autowired
+	private FoodService foodService;
+	
+	
 
 	@RequestMapping("/")
 	public String index() {
@@ -57,6 +66,15 @@ public class HomeController {
 		return "myAccount";
 	}
 
+	@RequestMapping("/menu")
+	public String menu(Model model){
+		List<Food> foodList = foodService.findAll();
+		model.addAttribute("foodList", foodList);
+		return "menu";
+		
+		
+	}
+	
 	@RequestMapping("/forgetPassword")
 	public String forgetPassword(
 			HttpServletRequest request,
