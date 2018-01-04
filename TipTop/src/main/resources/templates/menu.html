@@ -35,10 +35,10 @@
 						<div th:if="${food != null}">
 							<div class="row">
 								<div class="col-xs-3">
-									<img class="img-responsive shelf-food" th:src="#{adminPath}+@{/image/food/}+${food.id}+'.png'"/>
+								<a th:href="@{/foodDetail?id=}+${food.id}"> <img class="img-responsive menu-food" th:src="#{adminPath}+@{/image/food/}+${food.id}+'.png'"/></a>
 								</div>
 								<div class="col-xs-9">
-									<h4 th:text="${food.foodName}"></h4>
+								<a th:href="@{/foodDetail?id=}+${food.id}">	<h4 th:text="${food.foodName}"></h4></a>
 									
 									<span th:text="${food.type}"></span>
 									<span th:text="${#strings.capitalize(food.category)}"></span>

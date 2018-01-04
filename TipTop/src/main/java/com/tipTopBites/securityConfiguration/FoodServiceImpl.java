@@ -18,5 +18,8 @@ public class FoodServiceImpl implements FoodService{
 		return (List<Food>) foodRepository.findAll();
 	}
 
+	public Food findOne(Long id) {
+		return foodRepository.findOne(id);
+	}
 	
 }
