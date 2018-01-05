@@ -33,10 +33,10 @@
     <h3 th:text="${food.foodName}"></h3>
     <div class="row">
     <div class="col-xs-5">
-    <h5><span th:text="${food.type}"></span></h5>
-     <h5><span th:text="${food.category}"></span></h5>
-      <p><strong>Amount of Calories</strong><span th:text="${food.numberOfCalories}"></span></p>
-       <p><strong>Allergy Type: </strong><span th:text="${food.allergyType}"></span></p>
+    <h5><strong><span th:text="${food.type}"></span></strong></h5>
+     <h5><strong><span th:text="${food.category}"></span></strong></h5>
+      <p><strong>Amount of Calories: </strong><span th:text="${food.numberOfCalories}"></span></p>
+       <p><strong>Not Suitable with allergy type : </strong><span th:text="${food.allergyType}"></span></p>
       
     </div>
     

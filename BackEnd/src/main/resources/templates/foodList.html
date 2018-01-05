@@ -27,7 +27,7 @@
 				<tbody>
 				<tr data-th-each="food : ${foodList}">
 				
-				<td th:text="${food.foodName}"></td>
+				<td><a  th:href="@{/food/orderInfo(id=${food.id})}" > <span th:text="${food.foodName}"></span></a></td>
 				<td th:text="${food.type}"></td>
 				<td th:text="${food.category}"></td>
 				<td th:text="${food.numberOfCalories}"></td>
