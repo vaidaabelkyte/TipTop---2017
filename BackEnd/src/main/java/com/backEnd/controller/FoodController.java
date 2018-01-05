@@ -3,10 +3,12 @@ package com.backEnd.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.assertj.core.util.Files;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,6 +70,33 @@ public class FoodController {
 		return "updateMenu";
 		
 	}
+	
+	@RequestMapping(value="/updateMenu", method=RequestMethod.POST)
+	public String updateMenuPost(@ModelAttribute("food") Food food, HttpServletRequest request) {
+		foodService.save(food);
+		
+		MultipartFile foodImage = food.getFoodImage();
+		
+		if(!foodImage.isEmpty()) {
+			
+			try{
+				byte[] bytes = foodImage.getBytes();
+				String name = food.getId() + ".png";
+				
+				//Files.delete(Paths.get("src/main/resources/static/image/food/" + name));
+				
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(new File("src/main/resources/static/image/food/" + name)));
+				stream.write(bytes);
+				stream.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			}
+		return "redirect:/food/orderInfo?id="+food.getId();
+		}
+	
 	
 	@RequestMapping("/foodList")
 	public String foodList(Model model) {
