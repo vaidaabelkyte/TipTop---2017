@@ -61,6 +61,14 @@ public class FoodController {
 		return "orderInfo";
 	}
 	
+	@RequestMapping("/updateMenu")
+	public String updateMenu(@RequestParam("id") Long id, Model model) {
+		Food food = foodService.findOne(id);
+		model.addAttribute("food", food);
+		return "updateMenu";
+		
+	}
+	
 	@RequestMapping("/foodList")
 	public String foodList(Model model) {
 		List<Food> foodList =foodService.findAll();

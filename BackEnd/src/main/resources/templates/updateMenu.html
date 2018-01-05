@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="header :: header" />
+
+<body>
+	<div th:replace="header :: navbar" />
+
+	<div class="container">
+		<div class="row">
+			<form class="form-horizontal" th:action="@{/food/updateMenu}" method="post"
+				enctype="multipart/form-data">
+				<fieldset>
+					<legend class="center-block">
+						Udate Menu<span style="font-size: small"> </span>
+					</legend>
+
+
+					<!-- name -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="foodName">name</label>
+
+						<div class="col-md-8">
+							<input type="text" name="foodName" class="form-control" id="foodName"
+								th:value="${food.foodName}" required="required" placeholder="foodName" />
+							
+						</div>
+					</div>
+
+					<!-- type -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="type">Type of dish</label>
+						<div class="col-md-8">
+							<select th:value="${food.type}" id="type" name="type"
+								class="form-control">
+								<option value="Fish">fish</option>
+								<option value="beef">beef</option>
+								<option value="chicken">chicken</option>
+								<option value="veg">veg</option>
+								<option value="vegan">vegan</option>
+								
+							</select>
+						</div>
+					</div>
+					
+
+					<!-- category -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="category">
+							Category</label>
+						<div class="col-md-8">
+							<select th:value="${food.category}" id="category" name="category"
+								class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								<option value="salad"
+									th:selected="(${food.category}=='salad')">salad</option>
+								<option value="soup"
+									th:selected="(${food.category}=='soup')">soup</option>
+								<option value="breakfast"
+									th:selected="(${food.category}=='breakfast')">breakfast</option>
+								<option value="pizza"
+									th:selected="(${food.category}=='pizza')">pizza</option>
+								
+							</select>
+						</div>
+					</div>
+
+					<!-- calories -->
+						<div class="form-group">
+						<label class="col-md-2 control-label" for="numberOfCalories">Amount of caloroes</label>
+						<div class="col-md-8">
+							<select th:value="${food.numberOfCalories}" id="numberOfCalories" name="numberOfCalories"
+								class="form-control">
+								<option value="1000 - 1200">1000 - 1200</option>
+								<option value="1200 - 1400">1200 - 1400</option>
+								<option value="1400 - 1600">1400 - 1600</option>
+								<option value="1600 - 1800">1600 -1800</option>
+								<option value="1800 - 2000">1800 - 2000</option>
+								<option value="2000 - 2200">2000 -2200</option>
+								<option value="2200 - 2400">2200 - 2400</option>
+							</select>
+						</div>
+					</div>
+
+
+
+					<!-- allergy -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="allergyType">allergy</label>
+						<div class="col-md-8">
+							<select th:value="${food.allergyType}" id="allergyType" name="allergyType"
+								class="form-control">
+								<option value="gluten">gluten</option>
+								<option value="egg">egg</option>
+								<option value="milk">milk</option>
+								<option value="nuts">nuts</option>
+							</select>
+						</div>
+					</div>
+
+					
+
+					<!-- price -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="price">List
+							Price</label>
+						<div class="col-md-8">
+							<div class="input-group">
+								<span class="input-group-addon">$</span> <input
+									th:value="${food.price}" type="number" name="price"
+									class="form-control" id="price" placeholder="Price" />
+							</div>
+						
+						</div>
+					</div>
+
+					
+					
+					<!-- status -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="status">Status</label>
+						<div class="col-md-8">
+							<label><input value="true" type="radio" name="active"
+								checked="checked" /> Active </label> <label><input
+								value="false" type="radio" name="active" /> Inactive </label> 
+								
+						</div>
+					</div>
+
+					<!-- description -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="description">Description</label>
+						<div class="col-md-8">
+							<textarea name="description" rows="5" class="form-control"
+								id="description" th:value="${food.description}" th:text="${food.description}" 
+								placeholder="Description" />
+							
+						</div>
+					</div>
+
+					<!-- upload image -->
+					<div class="form-group">
+						<div class="col-md-2">
+							<label for="foodImage">Upload image</label>
+						</div>
+						<div class="col-md-8">
+							<input id="foodImage" type="file" name="foodImage"
+								th:value="${food.foodImage}" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Update Menu</button>
+							<a class="btn btn-danger" th:href="@{/food/orderInfo(id=${food.id})}">Cancel</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+
+
+
+
+	<div th:replace="header :: body-bottom-scripts" />
+</body>
+</html>
