@@ -42,12 +42,12 @@
 									
 									<span th:text="${food.type}"></span>
 									<span th:text="${#strings.capitalize(food.category)}"></span>
-									<span th:text="${food.numberOfCalories}"><span> calories</span></span>
+									<span th:text="${food.numberOfCalories}"><span> calories</span></span><br/>
 									<span style="font-size:x-large;color:#db3208;">$<span
 									th:text="${#numbers.formatDecimal(food.price, 0 , 'COMMA', 2, 'POINT')}"></span></span>
 									
 									
-									<p th:text="${#strings.abbreviate(food.description, 500)}"></p>
+									<p th:utext="${#strings.abbreviate(food.description, 500)}"></p>
 								</div>
 							</div>
 						</div>
