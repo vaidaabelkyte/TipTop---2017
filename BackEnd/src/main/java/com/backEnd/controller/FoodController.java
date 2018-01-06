@@ -75,25 +75,7 @@ public class FoodController {
 	public String updateMenuPost(@ModelAttribute("food") Food food, HttpServletRequest request) {
 		foodService.save(food);
 		
-		MultipartFile foodImage = food.getFoodImage();
 		
-		if(!foodImage.isEmpty()) {
-			
-			try{
-				byte[] bytes = foodImage.getBytes();
-				String name = food.getId() + ".png";
-				
-				//Files.delete(Paths.get("src/main/resources/static/image/food/" + name));
-				
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(new File("src/main/resources/static/image/food/" + name)));
-				stream.write(bytes);
-				stream.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			}
 		return "redirect:/food/orderInfo?id="+food.getId();
 		}
 	

@@ -26,14 +26,14 @@
 		<div class="col-xs-9">
 		<h3 th:text="${food.foodName}"></h3>
 		<div class="col-xs-6">
-		<p><spam th:text="${food.type}"></spam></p>
-		<p><spam th:text="${food.category}"></spam></p>
-		<p><strong>Amount of Calories:</strong><spam th:text="${food.numberOfCalories}"></spam></p>
+		<p><strong>Category : </strong><spam th:text="${food.type}"></spam></p>
+		<p><strong>Type of food : </strong><spam th:text="${food.category}"></spam></p>
+		<p><strong>Amount of Calories: </strong><spam th:text="${food.numberOfCalories}"></spam></p>
 		</div>
 		<div class="col-xs-6">
 		
-		<p><strong>Contains : :</strong><spam th:text="${food.allergyType}"></spam></p>
-		<p><strong>Price : :</strong><spam th:text="${food.price}"></spam></p>
+		<p><strong>Contains : </strong><spam th:text="${food.allergyType}"></spam></p>
+		<p><strong>Price : </strong>&euro;<spam th:text="${food.price}"></spam></p>
 		</div>
 		</div>
 		<p><strong>Description :</strong><spam th:utext="${food.description}"></spam></p>
