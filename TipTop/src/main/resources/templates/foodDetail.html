@@ -12,7 +12,7 @@
         <div class="col-xs-8">
             <h2 class="section-headline">
                 <h2 class="section-headline">
-                    <span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'Menu'"></span>
+                    <i>MENU</i>
                 </h2>
             </h2>
         </div>
@@ -25,18 +25,18 @@
     <input hidden="hidden" th:field="*{food.id}"/>
     <div class="row" style="margin-top: 120px;">
     <div class="col-xs-3">
-    <a th:href="@{/menu}">Back to menu</a><br/>
+    <a th:href="@{/menu}"><i>Back to menu</i></a><br/>
     	<img class="img-responsive menu-food" th:src="#{adminPath}+@{/image/food/}+${food.id}+'.png'"/>
     
     </div>
     <div class="col-xs-9">
-    <h3 th:text="${food.foodName}"></h3>
+    <b><h3 th:text="${food.foodName}"></h3></b>
     <div class="row">
     <div class="col-xs-5">
-    <h5><strong><span th:text="${food.type}"></span></strong></h5>
-     <h5><strong><span th:text="${food.category}"></span></strong></h5>
-      <p><strong>Amount of Calories: </strong><span th:text="${food.numberOfCalories}"></span></p>
-       <p><strong>Not Suitable with allergy type : </strong><span th:text="${food.allergyType}"></span></p>
+    <h5>Category: <strong><span th:text="${food.type}"></span></strong></h5>
+     <h5>Type of Fodd: <strong><span th:text="${food.category}"></span></strong></h5>
+      <p>Amount of Calories:<strong> <span th:text="${food.numberOfCalories}"></span></strong></p>
+       <p>Not Suitable with allergy type :<strong><span th:text="${food.allergyType}"></span> </strong></p>
       
     </div>
     
@@ -45,7 +45,7 @@
     <div class="panel-body">
     <div class="row">
     <div class="col-xs-6">
-    <h4>Price<span style="color:#db3208;"><span th:text="${food.price}"></span></span></h4>
+    <h4>Price: <span style="color:#db3208;">&euro;<span th:text="${food.price}"></span></span></h4>
     <span>QTY:</span>
     <select name="qty">
     <option th:each="qty : ${qtyList}" th:value="${qty}">
@@ -53,7 +53,7 @@
     </select>
     </div>
     <div class="col-xs-6">
-    <button type="submit" class="btn btn-warning" style="color:black; border:1px solid black; padding:10px 40px 10px 40px;">Add to Basket</button>
+    <button type="submit" class="btn btn-success" style="color:black; border:1px solid black; padding:10px 40px 10px 40px;">Add to Basket</button>
     </div>
     </div>
     </div>

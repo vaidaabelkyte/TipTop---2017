@@ -5,12 +5,12 @@
 
 <body>
 	<div class="container">
-		<h5 class="center-block">back end page</h5>
+		<strong><i><h2 class="center-block">TipTop Admin</h2></i></strong>
 		<hr />
 		
 		<div class="row">
 			<div class="col-xs-4 col-md-offset-4">
-				<div class="bg-danger" th:if="${param.error}">wrong username</div>
+				<div class="bg-danger" th:if="${param.error}">Wrong username</div>
 				<div class="bg-danger" th:if="${param.logout}">You have been
 					logged out.</div>
 				<form class="form-signin" th:action="@{/login}" method="post">
@@ -26,7 +26,7 @@
 							type="password" class="form-control" placeholder="Password"
 							name="password" id="password" required="required" />
 					</div>
-					<button class="btn btn-lg btn-primary btn-block" type="submit">login</button>
+					<button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
 				</form>
 			</div>
 		</div>

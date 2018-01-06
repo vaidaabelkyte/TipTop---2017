@@ -8,63 +8,68 @@
 	<div th:replace="header :: navbar" />
 
 	<div class="container">
-    <div class="row" style="margin-bottom: -100px;">
-        <div class="col-xs-8">
-            <h2 class="section-headline">
-                <h2 class="section-headline">
-                    <span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'Menu'"></span>
-                </h2>
-            </h2>
-        </div>
-       
-    </div>
-    <hr
-            style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;"/>
-   
-    <div class="row" style="margin-top: 60px;">
-        <div class="col-xs-9 col-xs-offset-3">
-			<div th:if="${emptyList}">
-				<h5 style="font-style: italic;">Oops, no result is found. Try something else or try again later.</h5>
+		<div class="row" style="margin-bottom: -100px;">
+			<div class="col-xs-8">
+				<h2 class="section-headline">
+					<h2 class="section-headline">  <i>MENU</i>
+					</h2>
+				</h2>
 			</div>
-			
-			<table border="0" id="foodList">
-				<thead><tr><th></th></tr></thead>
-				<tbody>
-				<tr class="food-item" data-th-each="food : ${foodList}">
-					<td>
-						<div th:if="${food != null}">
-							<div class="row">
-								<div class="col-xs-3">
-								<a th:href="@{/foodDetail?id=}+${food.id}"> <img class="img-responsive menu-food" th:src="#{adminPath}+@{/image/food/}+${food.id}+'.png'"/></a>
+
+		</div>
+		<div class="row" style="margin-top: 60px;">
+			<div class="col-xs-9 col-xs-offset-3">
+				<div th:if="${emptyList}">
+					<h5 style="font-style: italic;">Oops, no result is found. Try
+						something else or try again later.</h5>
+				</div>
+
+				<table border="0" id="foodList">
+					<thead>
+						<tr>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="food-item" data-th-each="food : ${foodList}">
+							<td>
+								<div th:if="${food != null}">
+									<div class="row">
+										<div class="col-xs-3">
+											<a th:href="@{/foodDetail?id=}+${food.id}"> <img
+												class="img-responsive menu-food"
+												th:src="#{adminPath}+@{/image/food/}+${food.id}+'.png'" /></a>
+										</div>
+										<div class="col-xs-9">
+											<a th:href="@{/foodDetail?id=}+${food.id}">
+												<h4 th:text="${food.foodName}"></h4>
+											</a> 
+											<h5>Category: <strong><span th:text="${food.type}"></span></strong></h5> 
+											<h5>Type of dish: <strong>
+											<span
+												th:text="${#strings.capitalize(food.category)}"></span></strong></h5>  <span
+												style="font-size: x-large; color: #db3208;">&euro;<span
+												th:text="${#numbers.formatDecimal(food.price, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+
+
+											<p th:utext="${#strings.abbreviate(food.description, 500)}"></p>
+										</div>
+									</div>
 								</div>
-								<div class="col-xs-9">
-								<a th:href="@{/foodDetail?id=}+${food.id}">	<h4 th:text="${food.foodName}"></h4></a>
-									
-									<span th:text="${food.type}"></span>
-									<span th:text="${#strings.capitalize(food.category)}"></span>
-									<span th:text="${food.numberOfCalories}"><span> calories</span></span><br/>
-									<span style="font-size:x-large;color:#db3208;">$<span
-									th:text="${#numbers.formatDecimal(food.price, 0 , 'COMMA', 2, 'POINT')}"></span></span>
-									
-									
-									<p th:utext="${#strings.abbreviate(food.description, 500)}"></p>
-								</div>
-							</div>
-						</div>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-            
-
-            
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
 
-            
-        </div>
-    </div>
-</div>
-<!-- end of container -->
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
 
 
 	<div th:replace="header :: body-bottom-scripts" />

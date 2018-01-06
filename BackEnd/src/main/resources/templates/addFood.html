@@ -12,32 +12,34 @@
 				enctype="multipart/form-data">
 				<fieldset>
 					<legend class="center-block">
-						New Food<span style="font-size: small"> </span>
+						<b><i>Add new Dish</i></b><span style="font-size: large"> </span>
 					</legend>
 
 
 					<!-- name -->
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="foodName">name</label>
+						<label class="col-md-2 control-label" for="foodName">Title</label>
 
 						<div class="col-md-8">
 							<input type="text" name="foodName" class="form-control" id="foodName"
-								th:value="${food.foodName}" required="required" placeholder="foodName" />
+								th:value="${food.foodName}" required="required" placeholder="" />
 							
 						</div>
 					</div>
 
 					<!-- type -->
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="type">Type of dish</label>
+						<label class="col-md-2 control-label" for="type">Category</label>
 						<div class="col-md-8">
 							<select th:value="${food.type}" id="type" name="type"
 								class="form-control">
-								<option value="Fish">fish</option>
-								<option value="beef">beef</option>
-								<option value="chicken">chicken</option>
-								<option value="veg">veg</option>
-								<option value="vegan">vegan</option>
+								<option value="Fish">Fish</option>
+								<option value="Beef">Beef</option>
+								<option value="Chicken">Chicken</option>
+								<option value="Vegan">Vegan</option>
+								<option value="Fruit">Fruit</option>
+								<option value="Desert">Desert</option>
+								
 								
 							</select>
 						</div>
@@ -47,28 +49,31 @@
 					<!-- category -->
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="category">
-							Category</label>
+							Type of food</label>
 						<div class="col-md-8">
 							<select th:value="${food.category}" id="category" name="category"
 								class="form-control">
-								<option value="" selected="selected" disabled="disabled">Please
-									select an option...</option>
+								<option value="" selected="selected" disabled="disabled"></option>
 								<option value="salad"
-									th:selected="(${food.category}=='salad')">salad</option>
+									th:selected="(${food.category}=='Salad')">Salad</option>
 								<option value="soup"
-									th:selected="(${food.category}=='soup')">soup</option>
+									th:selected="(${food.category}=='Soup')">Soup</option>
 								<option value="breakfast"
-									th:selected="(${food.category}=='breakfast')">breakfast</option>
+									th:selected="(${food.category}=='Breakfast')">Breakfast</option>
 								<option value="pizza"
-									th:selected="(${food.category}=='pizza')">pizza</option>
-								
+									th:selected="(${food.category}=='Pizza')">Pizza</option>
+									<option value="pizza"
+									th:selected="(${food.category}=='Pasta')">Pasta</option>
+									<option value="pizza"
+									th:selected="(${food.category}=='Desert')">Desert</option>
+									
 							</select>
 						</div>
 					</div>
 
 					<!-- calories -->
 						<div class="form-group">
-						<label class="col-md-2 control-label" for="numberOfCalories">Amount of caloroes</label>
+						<label class="col-md-2 control-label" for="numberOfCalories">Amount of calories</label>
 						<div class="col-md-8">
 							<select th:value="${food.numberOfCalories}" id="numberOfCalories" name="numberOfCalories"
 								class="form-control">
@@ -87,14 +92,17 @@
 
 					<!-- allergy -->
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="allergyType">allergy</label>
+						<label class="col-md-2 control-label" for="allergyType">Allergy</label>
 						<div class="col-md-8">
 							<select th:value="${food.allergyType}" id="allergyType" name="allergyType"
 								class="form-control">
-								<option value="gluten">gluten</option>
-								<option value="egg">egg</option>
-								<option value="milk">milk</option>
-								<option value="nuts">nuts</option>
+								<option value="None">None</option>
+								<option value="Gluten">Gluten</option>
+								<option value="Egg">Egg</option>
+								<option value="Milk">Milk</option>
+								<option value="Peanuts">Peanuts</option>
+								<option value="Fish">Fish</option>
+								<option value="Soy">Soy</option>
 							</select>
 						</div>
 					</div>
@@ -107,7 +115,7 @@
 							Price</label>
 						<div class="col-md-8">
 							<div class="input-group">
-								<span class="input-group-addon">$</span> <input
+								<span class="input-group-addon">&euro;</span> <input
 									th:value="${food.price}" type="number" name="price" step="0.01"
 									class="form-control" id="price" placeholder="Price" />
 							</div>
@@ -153,7 +161,7 @@
 					<div class="form-group">
 						<div class="col-md-2"></div>
 						<div class="col-md-8">
-							<button type="submit" class="btn btn-success">Add new</button>
+							<button type="submit" class="btn btn-success">Submit</button>
 							<a class="btn btn-danger" th:href="@{/}">Cancel</a>
 						</div>
 					</div>
