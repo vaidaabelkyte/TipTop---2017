@@ -10,5 +10,7 @@ public interface FoodService {
 	
 	Food findOne(Long id);
 	
+	List<Food> findByCategory (String category);
+	
 
 }

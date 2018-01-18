@@ -1,5 +1,6 @@
 package com.tipTopBites.securityConfiguration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,22 @@ public class FoodServiceImpl implements FoodService{
 
 	public Food findOne(Long id) {
 		return foodRepository.findOne(id);
+	}
+	
+	public List<Food> findByCategory(String category)
+	 {
+		List<Food> foodList = foodRepository.findByCategory(category);
+		
+		List<Food> activeFoodList = new ArrayList<>();
+		
+		for (Food food: foodList) {
+			if(food.isActive()) {
+				activeFoodList.add(food);
+				
+			}
+		}
+		
+		return activeFoodList;
 	}
 	
 }
