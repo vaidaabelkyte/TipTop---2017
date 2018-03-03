@@ -39,4 +39,18 @@ public class FoodServiceImpl implements FoodService{
 		return activeFoodList;
 	}
 	
+		public List<Food> blurrySearch(String foodName) {
+		
+		List <Food> foodList = foodRepository.findByFoodNameContaining(foodName);
+		List<Food> activeFoodList = new ArrayList<>();
+		
+		for (Food food: foodList) {
+			if(food.isActive()) {
+				activeFoodList.add(food);
+				
+			}
+		
+	}
+		return activeFoodList;
+		}
 }

@@ -12,5 +12,7 @@ public interface FoodService {
 	
 	List<Food> findByCategory (String category);
 	
+	
+	List<Food> blurrySearch(String foodName);
 
 }

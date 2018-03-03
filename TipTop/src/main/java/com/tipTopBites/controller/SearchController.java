@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -50,6 +51,28 @@ public class SearchController {
 		
 		return "menu";
 
+	}
+	
+	@RequestMapping("/searchFood")
+	public String searchFood (
+			@ModelAttribute("keyword") String keyword,
+			Principal principal, Model model
+			
+			) {
+		if(principal!=null){
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		List<Food> foodList = foodService.blurrySearch(keyword);
+		
+		if (foodList.isEmpty()) {
+			model.addAttribute("emptyList", true);
+			return "menu";
+		}
+		model.addAttribute("foodList", foodList);
+		return "menu";
+		
 	}
 
 }
