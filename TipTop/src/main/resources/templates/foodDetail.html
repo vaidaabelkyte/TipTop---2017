@@ -48,11 +48,15 @@
     <h4>Price: <span style="color:#db3208;">&euro;<span th:text="${food.price}"></span></span></h4>
     <span>QTY:</span>
     <select name="qty">
-    <option th:each="qty : ${qtyList}" th:value="${qty}">
+    <option th:each="qty : ${qtyList}" th:value="${qty}" th:text="${qty}">
     </option>
     </select>
     </div>
     <div class="col-xs-6">
+   <!--   <h4 th:if="*{food.inStockNumber&gt;10}" style="color:green"> available</h4>
+    <h4 th:if="*{food.inStockNumber&lt;10 and food.inStockNumber&gt;0}" style="color: green"> only <span th:text= "${food.inStockNumber}"> in stock </span></h4>
+    <h4 th:if="*{food.inStockNumber==0}" style="color:darkred;"> unavailable </h4>
+    -->
     <button type="submit" class="btn btn-success" style="color:black; border:1px solid black; padding:10px 40px 10px 40px;">Add to Basket</button>
     </div>
     </div>
