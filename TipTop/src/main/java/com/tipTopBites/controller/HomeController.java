@@ -90,6 +90,100 @@ public class HomeController {
     	return "myProfile";
     }
     
+    @RequestMapping("/listOfCreditCards")
+    public String listOfCreditCards(
+    		Model model, Principal principal, HttpServletRequest request
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	model.addAttribute("user", user);
+    	model.addAttribute("userPaymentList", user.getUserPaymentList());
+    	model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+    /*	model.addAttribute("ordertList", user.orderList()); */
+    	
+    	
+    	model.addAttribute("listOfCreditCards", true);
+    	model.addAttribute("classActiveBilling", true);
+    	model.addAttribute("listOfDeliveryAddresses", true);
+    	return "myProfile";
+    	
+    }
+    
+    
+    @RequestMapping("/listOfDeliveryAddresses")
+    public String listOfDeliveryAddresses(
+    		Model model, Principal principal, HttpServletRequest request
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	model.addAttribute("user", user);
+    	model.addAttribute("userPaymentList", user.getUserPaymentList());
+    	model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+    /*	model.addAttribute("ordertList", user.orderList()); */
+    	
+    	model.addAttribute("listOfCreditCards", true);
+    	model.addAttribute("classActiveBilling", true);
+    	model.addAttribute("listOfDeliveryAddresses", true);
+    	
+    	return "myProfile";
+    	
+    }
+    
+    @RequestMapping("/addNewCreditCard")
+    public String addNewCreditCard(
+    		Model model, Principal principal
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	model.addAttribute("user", user);
+    	model.addAttribute("addNewCreditCard", true);
+    	model.addAttribute("classActiveBilling", true);
+    	model.addAttribute("listOfDeliveryAddresses", true);
+    	
+    	UserBilling userBilling = new UserBilling();
+    	UserPayment userPayment = new UserPayment();
+    	
+    	model.addAttribute("userBilling", userBilling);
+    	model.addAttribute("userPayment", userPayment);
+    	
+    	
+    	List<String> streetList = IEConstants.listOfIEPostCode;
+    	Collections.sort(streetList);
+    	model.addAttribute("streetList", streetList);
+    	
+    	model.addAttribute("userPaymentList", user.getUserPaymentList());
+    	model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+    /*	model.addAttribute("ordertList", user.orderList()); */
+    	
+    	return "myProfile";
+    	
+    }
+    
+    @RequestMapping("/addNewDeliveryAddress")
+    public String addNewDeliveryAddress(
+    		Model model, Principal principal
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	model.addAttribute("user", user);
+    	model.addAttribute("addNewDeliveryAddress", true);
+    	model.addAttribute("classActiveDelivery", true);
+    	
+    	UserDelivery userDelivery = new UserDelivery();
+    	
+    	
+    	model.addAttribute("userDelivery", userDelivery);
+    	
+    	
+    	List<String> streetList = IEConstants.listOfIEPostCode;
+    	Collections.sort(streetList);
+    	model.addAttribute("streetList", streetList);
+    	
+    	model.addAttribute("userPaymentList", user.getUserPaymentList());
+    	model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+    /*	model.addAttribute("ordertList", user.orderList()); */
+    	
+    	return "myProfile";
+    	
+    }
+    
+    
     
 
     @RequestMapping("/menu")
