@@ -17,6 +17,7 @@ public class UserBilling {
 	private String userBillingStreet1;
 	private String userBillingStreet2;
 	private String userBillingCity;
+	private String userBillingArea;
 	private String userBillingCountry;
 	
 	@OneToOne (cascade=CascadeType.ALL)
@@ -57,6 +58,16 @@ public class UserBilling {
 
 	public String getUserBillingCity() {
 		return userBillingCity;
+	}
+	
+	
+
+	public String getUserBillingArea() {
+		return userBillingArea;
+	}
+
+	public void setUserBllingArea(String userBillingArea) {
+		this.userBillingArea = userBillingArea;
 	}
 
 	public void setUserBillingCity(String userBillingCity) {

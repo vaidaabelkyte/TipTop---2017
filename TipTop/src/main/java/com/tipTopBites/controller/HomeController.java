@@ -134,6 +134,8 @@ public class HomeController {
     	User user = userService.findByUsername(principal.getName());
     	model.addAttribute("user", user);
     	model.addAttribute("addNewCreditCard", true);
+    	model.addAttribute("listOfCreditCards", true);
+
     	model.addAttribute("classActiveBilling", true);
     	model.addAttribute("listOfDeliveryAddresses", true);
     	
@@ -164,6 +166,8 @@ public class HomeController {
     	model.addAttribute("user", user);
     	model.addAttribute("addNewDeliveryAddress", true);
     	model.addAttribute("classActiveDelivery", true);
+    	model.addAttribute("listOfCreditCards", true);
+
     	
     	UserDelivery userDelivery = new UserDelivery();
     	
