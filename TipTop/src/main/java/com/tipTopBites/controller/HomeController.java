@@ -1,6 +1,7 @@
 package com.tipTopBites.controller;
 
 import com.tipTopBites.domain.security.*;
+import com.tipTopBites.securityConfiguration.IEConstants;
 import com.tipTopBites.securityConfiguration.MailConstructor;
 import com.tipTopBites.securityConfiguration.SecurityUtility;
 import com.tipTopBites.securityConfiguration.UserSecurityService;
@@ -63,6 +64,33 @@ public class HomeController {
         model.addAttribute("classActiveLogin", true);
         return "myAccount";
     }
+    
+    @RequestMapping("/myProfile")
+    public String myProfile(Model model, Principal principal) {
+    	User user = userService.findByUsername(principal.getName());
+    	model.addAttribute("user", user);
+    	
+    	model.addAttribute("userPaymentList", user.getUserPaymentList());
+    	 model.addAttribute("userDeliverytList", user.getUserDeliveryList());
+    	/*  model.addAttribute("orderList", user.getOrderList()); */
+    	   
+    	
+    	 UserDelivery userDelivery = new UserDelivery();
+    	model.addAttribute("userDelivery", userDelivery); 
+    	
+    	model.addAttribute("listOfCreditCards", true);
+    	model.addAttribute("listOfDeliveryAddresses", true);
+    	
+    	
+    	List<String> streetList = IEConstants.listOfIEPostCode;
+    	Collections.sort(streetList);
+    	model.addAttribute("streetList", streetList);
+    	model.addAttribute("classActiveEdit", true);
+    	
+    	return "myProfile";
+    }
+    
+    
 
     @RequestMapping("/menu")
     public String menu(Model model) {
