@@ -1,5 +1,6 @@
 package com.tipTopBites.securityConfiguration;
 
+import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -27,6 +28,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private PasswordResetTokenRepository passwordResetTokenRepository;
+	
+	@Autowired
+	UserPaymentRepository userPaymentRepository;
 	
 	@Override
 	public PasswordResetToken getPasswordResetToken(final String token) {
@@ -80,6 +84,24 @@ public class UserServiceImpl implements UserService{
 		user.getUserPaymentList().add(userPayment);
 		save(user);
 		
+	}
+	
+	@Override
+	public void setUserDefaultPayment(Long userPaymentId, User user) {
+		List<UserPayment> userPaymentList = (List<UserPayment>) userPaymentRepository.findAll();
+		
+		
+		for (UserPayment userPayment : userPaymentList) {
+			if(userPayment.getId()==userPaymentId) {
+				userPayment.setDefaultPayment(true);
+				userPaymentRepository.save(userPayment);
+				
+			}else {
+				userPayment.setDefaultPayment(false);
+				userPaymentRepository.save(userPayment);
+
+			}
+		}
 	}
 
 	

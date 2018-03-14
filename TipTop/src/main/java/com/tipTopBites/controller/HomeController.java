@@ -218,7 +218,7 @@ public class HomeController {
     	UserPayment userPayment = userPaymentService.findById(creditCardId);
     	
     	if(user.getId() != userPayment.getUser().getId()) {
-    		return "bdRequestPage";
+    		return "badRequestPage";
     	}else {
     		model.addAttribute("user", user);
     		UserBilling userBilling = userPayment.getUserBilling();
@@ -241,6 +241,60 @@ public class HomeController {
     	
     	
     }
+    
+    @RequestMapping(value="setDefaultPayment", method=RequestMethod.POST)
+    public String setDefaultPayment(
+    		@ModelAttribute("defaultUserPaymentId") Long defaultPaymentId, Principal principal, Model model
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	userService.setUserDefaultPayment(defaultPaymentId, user);
+    	
+    	
+    	model.addAttribute("user", user);
+
+    	model.addAttribute("listOfCreditCards", true);
+		model.addAttribute("classActiveBilling", true);
+		model.addAttribute("listOfDeliveryAddresses", true);
+		
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+		
+		return "myProfile";
+
+    	
+    }
+    		
+    
+    
+    @RequestMapping("/removeCreditCard")
+    public String romoveCreditCard(
+    		@ModelAttribute("id") Long creditCardId, Principal principal, Model model
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	UserPayment userPayment = userPaymentService.findById(creditCardId);
+    	
+    	if(user.getId() != userPayment.getUser().getId()) {
+    		return "badRequestPage";
+    	}else {
+    		model.addAttribute("user", user);
+    		userPaymentService.removeById(creditCardId);
+    		
+    		
+    		
+    		model.addAttribute("listOfCreditCards", true);
+    		model.addAttribute("classActiveBilling", true);
+    		model.addAttribute("listOfDeliveryAddresses", true);
+    		
+    		model.addAttribute("userPaymentList", user.getUserPaymentList());
+    		model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+    		
+    		return "myProfile";
+    		
+    	}
+    	
+    	
+    }
+    
     
     
     
