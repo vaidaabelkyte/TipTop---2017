@@ -147,9 +147,9 @@
 															th:checked="${userPayment.defaultPayment}" /></td>
 														<td th:text="${userPayment.cardName}"></td>
 														<td><a
-															th:href="@{/updateCreditCard(id=$(userPayment.id))}"><i
+															th:href="@{/updateCreditCard(id=${userPayment.id})}"><i
 																class="fa fa-pencil"></i></a> <a
-															th:href="@{/removeCreditCard(id=$(userPayment.id))}"><i
+															th:href="@{/removeCreditCard(id=${userPayment.id})}"><i
 																class="fa fa-times"></i></a></td>
 													</tr>
 												</tbody>
@@ -160,7 +160,7 @@
 
 									<div th:if="${addNewCreditCard}">
 										<form th:action="@{addNewCreditCard}" method="post">
-											<div class="bg-info" th:if="${userPaymentInfo}">User
+											<div class="bg-info" th:if="${updateUserPaymentInfo}">User
 												details updated</div>
 
 											<input hidden="hidden" name="id" th:value="${userPayment.id}" />
@@ -212,8 +212,8 @@
 															th:name="userBillingArea"
 															th:value="${userBilling.userBillingArea}"
 															required="required">
-															<option th:each="area : ${streetList}" th:text="area"
-																th:selected="(${userBilling.userBillingArea}==${area})"></option>
+															<option th:each="area : ${streetList}" th:text="postCode"
+																th:selected="(${userBilling.userBillingArea}==${postCode})"></option>
 														</select>
 													</div>
 												</div>

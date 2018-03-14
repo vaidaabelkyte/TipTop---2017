@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.tipTopBites.domain.security.PasswordResetToken;
 import com.tipTopBites.domain.security.User;
+import com.tipTopBites.domain.security.UserBilling;
+import com.tipTopBites.domain.security.UserPayment;
 import com.tipTopBites.domain.security.UserRole;
 import com.tipTopBites.domain.security.UserService;
 
@@ -68,6 +70,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User save(User user) {
 		return userRepository.save(user);
+	}
+	
+	public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
+		userPayment.setUser(user);
+		userPayment.setUserBilling(userBilling);
+		userPayment.setDefaultPayment(true);
+		userBilling.setUserPayment(userPayment);
+		user.getUserPaymentList().add(userPayment);
+		save(user);
+		
 	}
 
 	
