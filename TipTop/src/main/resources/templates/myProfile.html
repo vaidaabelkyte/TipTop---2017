@@ -148,9 +148,9 @@
 														<td th:text="${userPayment.cardName}"></td>
 														<td><a
 															th:href="@{/updateCreditCard(id=${userPayment.id})}"><i
-																class="fa fa-pencil"></i></a> <a
+																class="glyphicon glyphicon-pencil"></i></a> <a
 															th:href="@{/removeCreditCard(id=${userPayment.id})}"><i
-																class="fa fa-times"></i></a></td>
+																class="glyphicon glyphicon-remove"></i></a></td>
 													</tr>
 												</tbody>
 											</table>
@@ -212,8 +212,8 @@
 															th:name="userBillingArea"
 															th:value="${userBilling.userBillingArea}"
 															required="required">
-															<option th:each="area : ${streetList}" th:text="postCode"
-																th:selected="(${userBilling.userBillingArea}==${postCode})"></option>
+															<option th:each="area : ${streetList}" th:text="street"
+																th:selected="(${userBilling.userBillingArea}==${street})"></option>
 														</select>
 													</div>
 												</div>
