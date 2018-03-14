@@ -205,18 +205,6 @@
 
 
 
-												<div class="col-xs-4">
-													<div class="form-group">
-														<label for="billingArea">Area by Eircode</label> <select
-															id="billingArea" class="form-control"
-															th:name="userBillingArea"
-															th:value="${userBilling.userBillingArea}"
-															required="required">
-															<option th:each="area : ${streetList}" th:text="street"
-																th:selected="(${userBilling.userBillingArea}==${street})"></option>
-														</select>
-													</div>
-												</div>
 
 											</div>
 

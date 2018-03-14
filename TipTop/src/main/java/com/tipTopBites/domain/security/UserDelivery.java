@@ -17,7 +17,6 @@ public class UserDelivery {
 	private String userDeliveryStreet1;
 	private String userDeliveryStreet2;
 	private String userDeliveryCity;
-	private String userDeliveryArea;
 	private String userDeliveryCountry;
 	
 	private boolean userDeliveryDefault;
@@ -63,14 +62,6 @@ public class UserDelivery {
 	}
 	
 	
-
-	public String getUserDeliveryArea() {
-		return userDeliveryArea;
-	}
-
-	public void setUserDeliveryArea(String userDeliveryArea) {
-		this.userDeliveryArea = userDeliveryArea;
-	}
 
 	public void setUserDeliveryCity(String userDeliveryCity) {
 		this.userDeliveryCity = userDeliveryCity;

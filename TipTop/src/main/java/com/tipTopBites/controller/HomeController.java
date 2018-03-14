@@ -1,7 +1,6 @@
 package com.tipTopBites.controller;
 
 import com.tipTopBites.domain.security.*;
-import com.tipTopBites.securityConfiguration.IEConstants;
 import com.tipTopBites.securityConfiguration.MailConstructor;
 import com.tipTopBites.securityConfiguration.SecurityUtility;
 import com.tipTopBites.securityConfiguration.UserSecurityService;
@@ -88,9 +87,7 @@ public class HomeController {
     	model.addAttribute("listOfDeliveryAddresses", true);
     	
     	
-    	List<String> streetList = IEConstants.listOfIEPostCode;
-    	Collections.sort(streetList);
-    	model.addAttribute("streetList", streetList);
+    	
     	model.addAttribute("classActiveEdit", true);
     	
     	return "myProfile";
@@ -152,9 +149,7 @@ public class HomeController {
     	model.addAttribute("userPayment", userPayment);
     	
     	
-    	List<String> streetList = IEConstants.listOfIEPostCode;
-    	Collections.sort(streetList);
-    	model.addAttribute("streetList", streetList);
+    	
     	
     	model.addAttribute("userPaymentList", user.getUserPaymentList());
     	model.addAttribute("userDeliveryList", user.getUserDeliveryList());
@@ -222,9 +217,7 @@ public class HomeController {
     	model.addAttribute("userDelivery", userDelivery);
     	
     	
-    	List<String> streetList = IEConstants.listOfIEPostCode;
-    	Collections.sort(streetList);
-    	model.addAttribute("streetList", streetList);
+    	
     	
     	model.addAttribute("userPaymentList", user.getUserPaymentList());
     	model.addAttribute("userDeliveryList", user.getUserDeliveryList());
@@ -249,8 +242,7 @@ public class HomeController {
     		model.addAttribute("userPayment", userPayment);
     		model.addAttribute("userBilling", userBilling);
     		
-    		List<String> streetList = IEConstants.listOfIEPostCode;
-    		Collections.sort(streetList);
+    		
     		
     		model.addAttribute("addNewCreditCard", true);
     		model.addAttribute("classActiveBilling", true);
