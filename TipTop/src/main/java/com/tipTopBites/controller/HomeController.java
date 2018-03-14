@@ -123,7 +123,7 @@ public class HomeController {
     /*	model.addAttribute("ordertList", user.orderList()); */
     	
     	model.addAttribute("listOfCreditCards", true);
-    	model.addAttribute("classActiveBilling", true);
+    	model.addAttribute("classActiveDelivery", true);
     	model.addAttribute("listOfDeliveryAddresses", true);
     	
     	return "myProfile";
@@ -180,6 +180,27 @@ public class HomeController {
     	
     	return "myProfile";
     }
+    
+    @RequestMapping(value="/addNewDeliveryAddress", method=RequestMethod.POST)
+    public String addNewDeliveryAddrssPost(
+    		@ModelAttribute("userDelivery") UserDelivery userDelivery,
+    		Principal principal, Model model
+    		
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	userService.updateUserDelivery(userDelivery, user);
+    	
+    	model.addAttribute("user", user);
+    	model.addAttribute("userPaymentList", user.getUserPaymentList());
+    	model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+    	model.addAttribute("listOfDeliveryAddresses", true);
+    	model.addAttribute("classActiveDelivery", true);
+    	model.addAttribute("listOfCreditCards", true);
+    	
+    	return "myProfile";
+    }
+    
+    
     
     @RequestMapping("/addNewDeliveryAddress")
     public String addNewDeliveryAddress(

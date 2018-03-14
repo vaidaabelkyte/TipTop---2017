@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.tipTopBites.domain.security.PasswordResetToken;
 import com.tipTopBites.domain.security.User;
 import com.tipTopBites.domain.security.UserBilling;
+import com.tipTopBites.domain.security.UserDelivery;
 import com.tipTopBites.domain.security.UserPayment;
 import com.tipTopBites.domain.security.UserRole;
 import com.tipTopBites.domain.security.UserService;
@@ -85,6 +86,17 @@ public class UserServiceImpl implements UserService{
 		save(user);
 		
 	}
+	
+	
+	@Override
+	public void updateUserDelivery (UserDelivery userDelivery, User user) {
+		userDelivery.setUser(user);
+		userDelivery.setUserDeliveryDefault(true);
+		user.getUserDeliveryList().add(userDelivery);
+		save(user);
+		
+	}
+
 	
 	@Override
 	public void setUserDefaultPayment(Long userPaymentId, User user) {

@@ -20,6 +20,8 @@ public class UserDelivery {
 	private String userDeliveryArea;
 	private String userDeliveryCountry;
 	
+	private boolean userDeliveryDefault;
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -89,6 +91,16 @@ public class UserDelivery {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public boolean isUserDeliveryDefault() {
+		return userDeliveryDefault;
+	}
+
+	public void setUserDeliveryDefault(boolean userDeliveryDefault) {
+		this.userDeliveryDefault = userDeliveryDefault;
+	}
+	
+	
 
 	
 }
