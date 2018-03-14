@@ -33,6 +33,10 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	UserPaymentRepository userPaymentRepository;
 	
+	@Autowired
+	UserDeliveryRepository userDeliveryRepository;
+	
+	
 	@Override
 	public PasswordResetToken getPasswordResetToken(final String token) {
 		return passwordResetTokenRepository.findByToken(token);
@@ -115,6 +119,27 @@ public class UserServiceImpl implements UserService{
 			}
 		}
 	}
+	
+	@Override
+	public void setUserDefaultDelivery(Long userDeliveryId, User user) {
+		
+List<UserDelivery> userDeliveryList = (List<UserDelivery>) userDeliveryRepository.findAll();
+		
+		
+		for (UserDelivery userDelivery : userDeliveryList) {
+			if(userDelivery.getId()==userDeliveryId) {
+				userDelivery.setUserDeliveryDefault(true);
+				userDeliveryRepository.save(userDelivery);
+				
+			}else {
+				userDelivery.setUserDeliveryDefault(false);
+				userDeliveryRepository.save(userDelivery);
+
+			}
+		}
+		
+	}
+
 
 	
 }

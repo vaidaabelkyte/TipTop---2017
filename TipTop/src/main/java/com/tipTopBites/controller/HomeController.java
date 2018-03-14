@@ -56,6 +56,9 @@ public class HomeController {
     
     @Autowired
     private UserPaymentService userPaymentService;
+    
+    @Autowired
+    private UserDeliveryService userDeliveryService;    
 
     @RequestMapping("/")
     public String index() {
@@ -263,6 +266,34 @@ public class HomeController {
     	
     }
     
+    @RequestMapping("/updateUserDelivery")
+    public String updateUserDelivery(
+    		@ModelAttribute("id") Long deliveryAddressId, Principal principal, Model model
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	UserDelivery userDelivery = userDeliveryService.findById(deliveryAddressId);
+    	
+    	if(user.getId() != userDelivery.getUser().getId()) {
+    		return "badRequestPage";
+    	}else {
+    		model.addAttribute("user", user);
+    		model.addAttribute("userDelivery", userDelivery);
+    		
+    		
+    		model.addAttribute("addNewDeliveryAddress", true);
+    		model.addAttribute("classActiveDelivery", true);
+    		model.addAttribute("listOfCreditCards", true);
+    		
+    		model.addAttribute("userPaymentList", user.getUserPaymentList());
+    		model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+    		
+    		return "myProfile";
+    		
+    	}
+    	
+    	
+    }
+    
     @RequestMapping(value="setDefaultPayment", method=RequestMethod.POST)
     public String setDefaultPayment(
     		@ModelAttribute("defaultUserPaymentId") Long defaultPaymentId, Principal principal, Model model
@@ -275,6 +306,28 @@ public class HomeController {
 
     	model.addAttribute("listOfCreditCards", true);
 		model.addAttribute("classActiveBilling", true);
+		model.addAttribute("listOfDeliveryAddresses", true);
+		
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+		
+		return "myProfile";
+
+    	
+    }
+    
+    @RequestMapping(value="setDefaultDeliveryAddress", method=RequestMethod.POST)
+    public String setDefaultDeliveryAddress(
+    		@ModelAttribute("defaultDeliveryAddressId") Long defaultDeliveryId, Principal principal, Model model
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	userService.setUserDefaultDelivery(defaultDeliveryId, user);
+    	
+    	
+    	model.addAttribute("user", user);
+
+    	model.addAttribute("listOfCreditCards", true);
+		model.addAttribute("classActiveDelivery", true);
 		model.addAttribute("listOfDeliveryAddresses", true);
 		
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
@@ -315,6 +368,35 @@ public class HomeController {
     	
     	
     }
+    
+    
+    @RequestMapping("/removeUserDelivery")
+    public String removeUserDelivery(
+    		@ModelAttribute("id") Long userDeliveryId, Principal principal, Model model
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	UserDelivery userDelivery = userDeliveryService.findById(userDeliveryId);
+    	
+    	if(user.getId() != userDelivery.getUser().getId()) {
+    		return "badRequestPage";
+    	}else {
+    		model.addAttribute("user", user);
+
+    		userDeliveryService.removeById(userDeliveryId);
+    		
+    		
+    		model.addAttribute("listOfDeliveryAddresses", true);
+    		model.addAttribute("classActiveDelivery", true);
+    		
+    		model.addAttribute("userPaymentList", user.getUserPaymentList());
+    		model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+    		
+    		return "myProfile";
+    		
+    	}
+    	
+    }
+    
     
     
     
