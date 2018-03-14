@@ -53,6 +53,9 @@ public class HomeController {
 
     @Autowired
     private FoodService foodService;
+    
+    @Autowired
+    private UserPaymentService userPaymentService;
 
     @RequestMapping("/")
     public String index() {
@@ -204,6 +207,38 @@ public class HomeController {
     /*	model.addAttribute("ordertList", user.orderList()); */
     	
     	return "myProfile";
+    	
+    }
+    
+    @RequestMapping("/updateCreditCard")
+    public String updateCreditCard(
+    		@ModelAttribute("id") Long creditCardId, Principal principal, Model model
+    		) {
+    	User user = userService.findByUsername(principal.getName());
+    	UserPayment userPayment = userPaymentService.findById(creditCardId);
+    	
+    	if(user.getId() != userPayment.getUser().getId()) {
+    		return "bdRequestPage";
+    	}else {
+    		model.addAttribute("user", user);
+    		UserBilling userBilling = userPayment.getUserBilling();
+    		model.addAttribute("userPayment", userPayment);
+    		model.addAttribute("userBilling", userBilling);
+    		
+    		List<String> streetList = IEConstants.listOfIEPostCode;
+    		Collections.sort(streetList);
+    		
+    		model.addAttribute("addNewCreditCard", true);
+    		model.addAttribute("classActiveBilling", true);
+    		model.addAttribute("listOfDeliveryAddresses", true);
+    		
+    		model.addAttribute("userPaymentList", user.getUserPaymentList());
+    		model.addAttribute("userDeliveryList", user.getUserDeliveryList());
+    		
+    		return "myProfile";
+    		
+    	}
+    	
     	
     }
     
