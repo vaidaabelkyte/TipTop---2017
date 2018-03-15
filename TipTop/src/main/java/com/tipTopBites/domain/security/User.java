@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +36,9 @@ public class User implements UserDetails{
 	private String email;
 	private String phone;
 	private boolean enabled=true;
+	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+	private DeliveryCart deliveryCart;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<UserDelivery> userDeliveryList;
@@ -111,6 +115,14 @@ public class User implements UserDetails{
 	}
 	public void setUserPaymentList(List<UserPayment> userPaymentList) {
 		this.userPaymentList = userPaymentList;
+	}
+	
+	
+	public DeliveryCart getDeliveryCart() {
+		return deliveryCart;
+	}
+	public void setDeliveryCart(DeliveryCart deliveryCart) {
+		this.deliveryCart = deliveryCart;
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
