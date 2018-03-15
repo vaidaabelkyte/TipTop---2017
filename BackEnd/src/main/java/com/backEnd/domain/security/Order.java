@@ -19,10 +19,8 @@ import javax.persistence.Table;
 public class Order {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	
-	private Long id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)	
+	private Long id;	
 	private Date deliveryDate;
 	private String deliveryMethod;
 	private String deliveryStatus;

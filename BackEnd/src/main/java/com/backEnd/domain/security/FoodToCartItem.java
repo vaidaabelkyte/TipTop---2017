@@ -24,7 +24,7 @@ public class FoodToCartItem {
 	
 	@ManyToOne
 	@JoinColumn(name="cart_item_id")	
-	private CartItem OrderItem;
+	private CartItem cartItem;
 
 
 	public Long getId() {
@@ -47,14 +47,15 @@ public class FoodToCartItem {
 	}
 
 
-	public CartItem getOrderItem() {
-		return OrderItem;
+	public CartItem getCartItem() {
+		return cartItem;
 	}
 
 
-	public void setOrderItem(CartItem orderItem) {
-		OrderItem = orderItem;
+	public void setCartItem(CartItem cartItem) {
+		this.cartItem = cartItem;
 	}
+
 
 
 	
