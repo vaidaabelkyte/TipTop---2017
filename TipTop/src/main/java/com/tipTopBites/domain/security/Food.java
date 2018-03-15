@@ -1,13 +1,18 @@
 package com.tipTopBites.domain.security;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Food {
@@ -30,6 +35,10 @@ public class Food {
 	
 	@Transient
 	private MultipartFile foodImage;
+	
+	@OneToMany(mappedBy = "food")
+	@JsonIgnore
+	private List<FoodToOrderItem> foodToOrderItemList;
 
 	public Long getId() {
 		return id;
@@ -109,6 +118,14 @@ public class Food {
 
 	public void setFoodImage(MultipartFile foodImage) {
 		this.foodImage = foodImage;
+	}
+
+	public List<FoodToOrderItem> getFoodToOrderItemList() {
+		return foodToOrderItemList;
+	}
+
+	public void setFoodToOrderItemList(List<FoodToOrderItem> foodToOrderItemList) {
+		this.foodToOrderItemList = foodToOrderItemList;
 	}
 
 	
