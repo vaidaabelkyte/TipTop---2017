@@ -38,7 +38,7 @@ public class Food {
 	
 	@OneToMany(mappedBy = "food")
 	@JsonIgnore
-	private List<FoodToOrderItem> foodToOrderItemList;
+	private List<FoodToCartItem> foodToCartItemList;
 
 	public Long getId() {
 		return id;
@@ -120,13 +120,14 @@ public class Food {
 		this.foodImage = foodImage;
 	}
 
-	public List<FoodToOrderItem> getFoodToOrderItemList() {
-		return foodToOrderItemList;
+	public List<FoodToCartItem> getFoodToCartItemList() {
+		return foodToCartItemList;
 	}
 
-	public void setFoodToOrderItemList(List<FoodToOrderItem> foodToOrderItemList) {
-		this.foodToOrderItemList = foodToOrderItemList;
+	public void setFoodToCartItemList(List<FoodToCartItem> foodToCartItemList) {
+		this.foodToCartItemList = foodToCartItemList;
 	}
 
+	
 	
 }

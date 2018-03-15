@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Orders {
+public class DeliveryCart {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,9 +23,9 @@ public class Orders {
 	private Long id;
 	private BigDecimal GrandTotal;
 	
-	@OneToMany(mappedBy="orders", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="deliveryCart", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JsonIgnore
-	private List<OrderItem> orderItemList;
+	private List<CartItem> cartItemList;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
@@ -46,12 +46,12 @@ public class Orders {
 		GrandTotal = grandTotal;
 	}
 
-	public List<OrderItem> getOrderItemList() {
-		return orderItemList;
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
 	}
 
-	public void setOrderItemList(List<OrderItem> orderItemList) {
-		this.orderItemList = orderItemList;
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
 	}
 
 	public User getUser() {
@@ -61,6 +61,8 @@ public class Orders {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	
 	
 	
 	

@@ -8,13 +8,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class FoodToOrderItem {
+public class FoodToCartItem {
 
 	
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private Long id;
 	
 	
@@ -24,8 +23,8 @@ public class FoodToOrderItem {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="order_item_id")	
-	private OrderItem OrderItem;
+	@JoinColumn(name="cart_item_id")	
+	private CartItem OrderItem;
 
 
 	public Long getId() {
@@ -48,14 +47,17 @@ public class FoodToOrderItem {
 	}
 
 
-	public OrderItem getOrderItem() {
+	public CartItem getOrderItem() {
 		return OrderItem;
 	}
 
 
-	public void setOrderItem(OrderItem orderItem) {
+	public void setOrderItem(CartItem orderItem) {
 		OrderItem = orderItem;
 	}
+
+
+	
 	
 	
 	

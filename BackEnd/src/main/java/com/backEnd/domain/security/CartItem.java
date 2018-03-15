@@ -1,4 +1,4 @@
-package com.tipTopBites.domain.security;
+package com.backEnd.domain.security;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,12 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class OrderItem {
+public class CartItem {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private Long id;
 	private int qty;
 	private BigDecimal subtotal;
@@ -25,12 +26,13 @@ public class OrderItem {
 	@OneToOne
 	private Food food;
 	
-	@OneToMany(mappedBy = "orderItem")
-	private List<FoodToOrderItem> foodToOrderItemList;
+	@OneToMany(mappedBy = "cartItem")
+	@JsonIgnore
+	private List<FoodToCartItem> foodToCartItemList;
 	
 	@ManyToOne
-	@JoinColumn(name="orders_id")
-	private Orders orders;
+	@JoinColumn(name="delivery_cart_id")
+	private DeliveryCart deliveryCart;
 	
 	@ManyToOne
 	@JoinColumn(name="order_id")
@@ -68,20 +70,20 @@ public class OrderItem {
 		this.food = food;
 	}
 
-	public List<FoodToOrderItem> getFoodToOrderItemList() {
-		return foodToOrderItemList;
+	public List<FoodToCartItem> getFoodToCartItemList() {
+		return foodToCartItemList;
 	}
 
-	public void setFoodToOrderItemList(List<FoodToOrderItem> foodToOrderItemList) {
-		this.foodToOrderItemList = foodToOrderItemList;
+	public void setFoodToCartItemList(List<FoodToCartItem> foodToCartItemList) {
+		this.foodToCartItemList = foodToCartItemList;
 	}
 
-	public Orders getOrders() {
-		return orders;
+	public DeliveryCart getDeliveryCart() {
+		return deliveryCart;
 	}
 
-	public void setOrders(Orders orders) {
-		this.orders = orders;
+	public void setDeliveryCart(DeliveryCart deliveryCart) {
+		this.deliveryCart = deliveryCart;
 	}
 
 	public Order getOrder() {
@@ -91,6 +93,8 @@ public class OrderItem {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
+
+	
 	
 	
 	

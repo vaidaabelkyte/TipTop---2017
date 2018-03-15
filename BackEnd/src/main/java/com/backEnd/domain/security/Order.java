@@ -1,4 +1,4 @@
-package com.tipTopBites.domain.security;
+package com.backEnd.domain.security;
 
 import java.math.BigDecimal;
 import java.util.Date;
