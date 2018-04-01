@@ -50,7 +50,7 @@
 						</div>
 
 					</div>
-					<!-- Display the selected things from menu ----------------------------------------------------------------------------->
+					<!-- Display the selected things from menu -->
 
 					<div class="row" th:each="cartItem : ${cartItemList}">
 						<form th:action="@{/deliveryCart/updateCartItem}" method="post">
@@ -71,7 +71,7 @@
 							<div class="col-xs-2">
 								<input hidden="hidden" name="id" th:value="${cartItem.id}" /> <input
 									th:id="${cartItem.id}" th:name="qty"
-									class="form-control cartItemQty" th:value="$cartItemQty" />
+									class="form-control cartItemQty" th:value="${cartItemQty}" />
 
 								<button style="display: none;"
 									th:id="'update-item-' +${cartItem.id}" type="submit"

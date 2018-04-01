@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.tipTopBites.domain.security.CartItem;
 import com.tipTopBites.domain.security.CartItemService;
 import com.tipTopBites.domain.security.DeliveryCart;
+import com.tipTopBites.domain.security.DeliveryCartService;
 import com.tipTopBites.domain.security.User;
 import com.tipTopBites.domain.security.UserService;
 
@@ -23,6 +24,9 @@ public class DeliveryCartController {
 	
 	@Autowired
 	private CartItemService cartItemService;
+	
+	@Autowired
+	DeliveryCartService deliveryCartService;
 	
 	@RequestMapping("/cart")
 	public String deliveryCart(Model model, Principal principal) {

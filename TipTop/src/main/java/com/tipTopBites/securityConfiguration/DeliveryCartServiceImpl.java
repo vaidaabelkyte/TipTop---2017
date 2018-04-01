@@ -21,7 +21,9 @@ public class DeliveryCartServiceImpl implements DeliveryCartService{
 	private DeliveryCartRepository deliveryCartRepository;
 	
 	
-	public void updateDeliveryCart(DeliveryCart deliveryCart) {
+	
+	
+	public DeliveryCart updateDeliveryCart(DeliveryCart deliveryCart) {
 		BigDecimal cartTotal = new BigDecimal(0);
 		
 		List<CartItem> cartItemList = cartItemService.findByDeliveryCart(deliveryCart);
@@ -33,9 +35,10 @@ public class DeliveryCartServiceImpl implements DeliveryCartService{
 				cartTotal = cartTotal.add(cartItem.getSubtotal());
 				
 			}
+
 		}
 		
-		deliveryCart.setGrandTotal(cartTotal);
+	deliveryCart.setGrandTotal(cartTotal);
 		deliveryCartRepository.save(deliveryCart);
 		return deliveryCart;
 		

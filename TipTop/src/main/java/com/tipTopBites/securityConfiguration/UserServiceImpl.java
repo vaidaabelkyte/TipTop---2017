@@ -1,13 +1,17 @@
 package com.tipTopBites.securityConfiguration;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tipTopBites.domain.security.DeliveryCart;
 import com.tipTopBites.domain.security.PasswordResetToken;
 import com.tipTopBites.domain.security.User;
 import com.tipTopBites.domain.security.UserBilling;
@@ -58,6 +62,9 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByEmail(email);
 	}
 	
+	
+	@Override
+	@Transactional
 	public User createUser(User user, Set<UserRole> userRoles){
 		User localUser = userRepository.findByUsername(user.getUsername());
 		
@@ -69,6 +76,14 @@ public class UserServiceImpl implements UserService{
 			}
 			
 			user.getUserRoles().addAll(userRoles);
+			
+			DeliveryCart deliveryCart = new DeliveryCart();
+			deliveryCart.setUser(user);
+			user.setDeliveryCart(deliveryCart);
+			
+			user.setUserDeliveryList(new ArrayList<UserDelivery>());
+			user.setUserPaymentList(new ArrayList<UserPayment>());
+
 			
 			localUser = userRepository.save(user);
 		}
