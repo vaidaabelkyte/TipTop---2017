@@ -13,11 +13,11 @@ public class DeliveryAddress {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String DeliveryName;
-	private String DeliveryStreet1;
-	private String DeliveryStreet2;
-	private String DeliveryCity;
-	private String DeliveryCountry;
+	private String DeliveryAddressName;
+	private String DeliveryAddressStreet1;
+	private String DeliveryAddressStreet2;
+	private String DeliveryAddressCity;
+	private String DeliveryAddressCountry;
 	
 	
 	@ManyToOne
@@ -32,44 +32,44 @@ public class DeliveryAddress {
 		this.id = id;
 	}
 
-	public String getDeliveryName() {
-		return DeliveryName;
+	public String getDeliveryAddressName() {
+		return DeliveryAddressName;
 	}
 
-	public void setDeliveryName(String deliveryName) {
-		DeliveryName = deliveryName;
+	public void setDeliveryAddressName(String deliveryAddressName) {
+		DeliveryAddressName = deliveryAddressName;
 	}
 
-	public String getDeliveryStreet1() {
-		return DeliveryStreet1;
+	public String getDeliveryAddressStreet1() {
+		return DeliveryAddressStreet1;
 	}
 
-	public void setDeliveryStreet1(String deliveryStreet1) {
-		DeliveryStreet1 = deliveryStreet1;
+	public void setDeliveryAddressStreet1(String deliveryAddressStreet1) {
+		DeliveryAddressStreet1 = deliveryAddressStreet1;
 	}
 
-	public String getDeliveryStreet2() {
-		return DeliveryStreet2;
+	public String getDeliveryAddressStreet2() {
+		return DeliveryAddressStreet2;
 	}
 
-	public void setDeliveryStreet2(String deliveryStreet2) {
-		DeliveryStreet2 = deliveryStreet2;
+	public void setDeliveryAddressStreet2(String deliveryAddressStreet2) {
+		DeliveryAddressStreet2 = deliveryAddressStreet2;
 	}
 
-	public String getDeliveryCity() {
-		return DeliveryCity;
+	public String getDeliveryAddressCity() {
+		return DeliveryAddressCity;
 	}
 
-	public void setDeliveryCity(String deliveryCity) {
-		DeliveryCity = deliveryCity;
+	public void setDeliveryAddressCity(String deliveryAddressCity) {
+		DeliveryAddressCity = deliveryAddressCity;
 	}
 
-	public String getDeliveryCountry() {
-		return DeliveryCountry;
+	public String getDeliveryAddressCountry() {
+		return DeliveryAddressCountry;
 	}
 
-	public void setDeliveryCountry(String deliveryCountry) {
-		DeliveryCountry = deliveryCountry;
+	public void setDeliveryAddressCountry(String deliveryAddressCountry) {
+		DeliveryAddressCountry = deliveryAddressCountry;
 	}
 
 	public User getUser() {
@@ -79,9 +79,6 @@ public class DeliveryAddress {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
-
 
 	
 }

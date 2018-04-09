@@ -1,18 +1,21 @@
 package com.tipTopBites.securityConfiguration;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.tipTopBites.domain.security.CartItem;
 import com.tipTopBites.domain.security.CartItemService;
 import com.tipTopBites.domain.security.DeliveryCart;
 import com.tipTopBites.domain.security.DeliveryCartService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class DeliveryCartServiceImpl implements DeliveryCartService{
+	private static Logger logger = LoggerFactory.getLogger(DeliveryCartServiceImpl.class);
+	
 	
 	@Autowired
 	private CartItemService cartItemService;
@@ -37,7 +40,7 @@ public class DeliveryCartServiceImpl implements DeliveryCartService{
 			}
 
 		}
-		
+
 	deliveryCart.setGrandTotal(cartTotal);
 		deliveryCartRepository.save(deliveryCart);
 		return deliveryCart;

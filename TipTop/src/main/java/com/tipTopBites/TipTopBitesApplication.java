@@ -1,17 +1,13 @@
 package com.tipTopBites;
-import java.util.HashSet;
-import java.util.Set;
-
+import com.tipTopBites.domain.security.*;
+import com.tipTopBites.securityConfiguration.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.tipTopBites.domain.security.Role;
-import com.tipTopBites.domain.security.User;
-import com.tipTopBites.domain.security.UserRole;
-import com.tipTopBites.domain.security.UserService;
-import com.tipTopBites.securityConfiguration.SecurityUtility;
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 public class TipTopBitesApplication implements CommandLineRunner {
@@ -36,6 +32,7 @@ public class TipTopBitesApplication implements CommandLineRunner {
 		role1.setRoleId(1);
 		role1.setName("ROLE_USER");
 		userRoles.add(new UserRole(user1, role1));
+		user1.setDeliveryCart(new DeliveryCart());
 		
 		userService.createUser(user1, userRoles);
 	}

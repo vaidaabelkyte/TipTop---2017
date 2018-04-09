@@ -29,7 +29,7 @@
 					</div>
 					<div class="col-xs-6 text-right">
 						<a class="btn btn-primary"
-							th:href="@{/checkout(id=${deliveryCart})}">Place the order</a>
+							th:href="@{/checkout(id=${deliveryCart.id})}">Place the order</a>
 
 					</div>
 					<br />
@@ -38,6 +38,8 @@
 
 					<div th:if="${emptyCart}" class="alert alert-warning">Please
 						add something to the cart</div>
+					
+					
 					<div class="row">
 						<div class="col-xs-8">
 							<h4>Dish</h4>
@@ -56,7 +58,7 @@
 						<form th:action="@{/deliveryCart/updateCartItem}" method="post">
 							<hr />
 							<div class="col-xs-2">
-								<a th:href="@{/foodDetail(id=${cartItem.food.id})}"> <img
+								<a th:href="@{foodDetail(id=${cartItem.food.id})}"> <img
 									class="img-responsive menu-food"
 									th:src="#{adminPath}+@{/image/food/}+${cartItem.food.id}+'.png'" />
 								</a>
@@ -71,10 +73,10 @@
 							<div class="col-xs-2">
 								<input hidden="hidden" name="id" th:value="${cartItem.id}" /> <input
 									th:id="${cartItem.id}" th:name="qty"
-									class="form-control cartItemQty" th:value="${cartItemQty}" />
+									class="form-control cartItemQty" th:value="${cartItem.qty}" />
 
 								<button style="display: none;"
-									th:id="'update-item-' +${cartItem.id}" type="submit"
+									th:id="'update-item-'+${cartItem.id}" type="submit"
 									class="btn btn-warning btn-xs">Update</button>
 							</div>
 
