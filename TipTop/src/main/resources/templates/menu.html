@@ -90,5 +90,21 @@
 
 
 	<div th:replace="header :: body-bottom-scripts" />
+	<script>
+	$(document).ready(function() {
+		$('#foodList').DataTable({
+			"lengthMenu":[[5,10,15,20,-1],[5,10,15,20,"All"]],
+			"ordering":false,
+			stateSave:true
+		});
+		
+		$("#foodList").on('page.dt', function() {
+			$('html,body').animate({
+				scrollTop: $('#foodList').offset().top
+			},200);
+		});
+		
+	});	
+	</script>
 </body>
 </html>
