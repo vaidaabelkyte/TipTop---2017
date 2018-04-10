@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -25,12 +26,15 @@ public class DeliveryCartController {
 	@Autowired
 	DeliveryCartService deliveryCartService;
 	
+	@Autowired
+	private FoodService foodService;
+	
 	@RequestMapping(value = "/cart")
 	public String deliveryCart(Model model, Principal principal) {
 
 
 		User user = userService.findByUsername(principal.getName());
-		DeliveryCart deliveryCart = user.getDeliveryCart();  //null
+		DeliveryCart deliveryCart = user.getDeliveryCart();  //nullii
 
 		List<CartItem> cartItemList = cartItemService.findByDeliveryCart(deliveryCart);
 
@@ -42,6 +46,28 @@ public class DeliveryCartController {
 		model.addAttribute("deliveryCart", deliveryCart);
 		
 		return "deliveryCart";
+	}
+	
+	@RequestMapping("/addItem")
+	public String addItem(
+			@ModelAttribute("food") Food food,
+			@ModelAttribute("qty") String qty,
+			Model model, Principal principal
+			) {
+		User user = userService.findByUsername(principal.getName());
+		food = foodService.findOne(food.getId());
+		
+		if(Integer.parseInt(qty) > 0) {
+			model.addAttribute("not available", true);
+			return "forward:/foodDetail?id="+food.getId();
+			
+		}
+		
+		CartItem cartItem = cartItemService.addFoodToCartItem(food, user, Integer.parseInt(qty));
+		model.addAttribute("addFoodSuccess", true);
+		
+		return "forward:/foodDetail?id="+food.getId();
+		
 	}
 	
 	

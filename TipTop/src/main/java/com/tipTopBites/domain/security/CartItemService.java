@@ -7,4 +7,7 @@ public interface CartItemService {
 	List<CartItem> findByDeliveryCart(DeliveryCart deliveryCart);
 	
 	CartItem updateCartItem(CartItem cartItem);
+	
+	CartItem addFoodToCartItem(Food food, User user, int qty);
+	
 }

@@ -9,12 +9,18 @@ import org.springframework.stereotype.Service;
 import com.tipTopBites.domain.security.CartItem;
 import com.tipTopBites.domain.security.CartItemService;
 import com.tipTopBites.domain.security.DeliveryCart;
+import com.tipTopBites.domain.security.Food;
+import com.tipTopBites.domain.security.FoodToCartItem;
+import com.tipTopBites.domain.security.User;
 
 @Service
 public class CartItemServiceImpl implements CartItemService {
 	
 	@Autowired
 	private CartItemRepository cartItemRepository;
+	
+	@Autowired
+	private FoodToCartItemRepository foodToCartItemRepository;
 	
 	public List<CartItem> findByDeliveryCart(DeliveryCart deliveryCart) {
 		
@@ -32,5 +38,35 @@ public class CartItemServiceImpl implements CartItemService {
 		return cartItem;
 	}
 	
+	public CartItem addFoodToCartItem(Food food, User user, int qty)
+	{
+		List<CartItem> cartItemList = findByDeliveryCart(user.getDeliveryCart());
+		
+		for (CartItem cartItem : cartItemList) {
+			if(food.getId() == cartItem.getFood().getId()) {
+				cartItem.setQty(cartItem.getQty()+qty);
+				cartItem.setSubtotal(new BigDecimal(food.getPrice()).multiply(new BigDecimal(qty)));
+				cartItemRepository.save(cartItem);
+				return cartItem;
+			}
+		}
+		
+		CartItem cartItem = new CartItem();
+		cartItem.setDeliveryCart(user.getDeliveryCart());
+		cartItem.setFood(food);
+		
+		cartItem.setQty(qty);
+		cartItem.setSubtotal(new BigDecimal(food.getPrice()).multiply(new BigDecimal(qty)));
+		cartItem = cartItemRepository.save(cartItem);
+		
+		FoodToCartItem foodToCartItem = new FoodToCartItem();
+		foodToCartItem.setFood(food);
+		foodToCartItem.setCartItem(cartItem);
+		foodToCartItemRepository.save(foodToCartItem);
+		
+		return cartItem;
+
+
+	}
 
 }
