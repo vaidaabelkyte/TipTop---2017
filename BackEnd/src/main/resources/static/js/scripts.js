@@ -34,7 +34,7 @@ $(document).ready(function() {
 	});
 
 	var foodList=[];
-	#('.checkboxFood').click(function() {
+	$('.checkboxFood').click(function() {
 		var id=$(this).attr('id');
 		if(this.checked){
 			foodIdList.push(id);
