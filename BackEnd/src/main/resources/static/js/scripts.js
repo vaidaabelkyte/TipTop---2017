@@ -80,11 +80,11 @@ $(document).ready(function() {
 		
 	});
 	
-	$("selectAllFoods").click(function() {
+	$("#selectAllFoods").click(function() {
 		if($(this).prop("checked")==true) {
-			$(".checkBox").click();
+			$(".checkboxFood").prop("checked",true);
 		} else if ($(this).prop("checked")==false) {
-			$(".checkBox").click();
+			$(".checkboxFood").prop("checked",false);
 		}
 	})
 	
