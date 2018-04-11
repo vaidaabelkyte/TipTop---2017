@@ -34,18 +34,26 @@ $(document).ready(function() {
 	});
 
 	var foodList=[];
-	$('.checkboxFood').click(function() {
-		var id=$(this).attr('id');
-		if(this.checked){
-			foodIdList.push(id);
+	//$('.checkboxFood').click(function() {
+		//var id=$(this).attr('id');
+		//if(this.checked){
+			//foodIdList.push(id);
 			
-		} else {
-			foodIdList.splice(foodIdList.indexOf(id), 1);
-		}
+		//} else {
+			//foodIdList.splice(foodIdList.indexOf(id), 1);
+		//}
 	
-	})
+	//})
 	
 	$('#deleteSelected').click(function() {
+		var idList= $('.checkboxFood');
+		var foodIdList=[];
+		for (var i=0; i < idList.length; i++) {
+			if(idList[i].checked==true) {
+				foodIdList.push(idList[i]['id'])
+			}
+		}
+	
 		/*<![CDATA[*/
 		var path = /*[[@{/}]]*/'remove';
 		/*]]>*/
@@ -67,8 +75,15 @@ $(document).ready(function() {
 					url: path,
 					data: JSON.stringify(foodIdList),
 					contentType: "application/json",
-					success: function(res) {console.log(res); location.reload()},
-					error: function(res){console.log(res); location.reload();}
+					success: function(res) {
+						console.log(res);
+			
+					location.reload()},
+					error: function(res){
+						console.log(res);
+					
+					location.reload();}
+					}
 				
 				});
 			}
