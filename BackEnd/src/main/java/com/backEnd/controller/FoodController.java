@@ -85,6 +85,19 @@ public class FoodController {
 		//return "foodList";
 		
 	}
+	
+	@RequestMapping(value="/remove", method=RequestMethod.POST)
+	public String remove(
+			@ModelAttribute("id") String id, Model model
+			
+			) {
+		foodService.removeOne(Long.parseLong(id.substring(8)));
+		List<Food> foodList = foodService.findAll();
+		model.addAttribute("foodList", foodList);
+		
+		return "redirect:/food/foodList";
+		
+	}
 
 	
 
