@@ -25,6 +25,10 @@ public class FoodServiceImpl implements FoodService {
 		return foodRepository.findOne(id);
 		
 	}
+	
+	 public void removeOne(Long id) {
+		 foodRepository.delete(id);
+	 }
 }
 
 

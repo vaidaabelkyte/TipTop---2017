@@ -9,4 +9,6 @@ public interface FoodService {
 	List<Food> findAll();
 	
 	Food findOne(Long id);
+	
+	void removeOne(Long id);
 }
