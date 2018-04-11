@@ -23,7 +23,7 @@
             <div class="col-xs-3">
 
                 <div class="form-group">
-                  <h4> <label class="control-label">Food Intolerance to:</label></h4> 
+                  <h4> <label class="control-label">Intolerance filter</label></h4> 
                     <div class="radio" th:each="item : ${allergyItems}">
                         <label>
                             <input type="radio" name="fradio" th:value="${item.value}" th:text="${item.key}"
@@ -35,7 +35,7 @@
                 </div>
                 <hr/>
                 <div class="list-group" id="category">
-                <h4><b>Amount of Calories:</b></h4>
+                <h4><b>Amount of Calorie filter</b></h4>
                     <a th:href="@{/searchByNumberOfCalories(numberOfCalories='all',allergy=${allergy})}" th:classappend="${activeAll}? 'active'"
                        class="list-group-item">All</a>
                     <a th:href="@{/searchByNumberOfCalories(numberOfCalories='1000 - 1200',allergy=${allergy})}"
