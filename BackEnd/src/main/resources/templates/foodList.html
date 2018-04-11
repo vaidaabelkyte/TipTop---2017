@@ -39,7 +39,7 @@
 				<td th:text="${food.active}"></td>
 				<td>
 					<input hidden="hidden" name="id" th:value="${food.id}"/>
-					<button th:id="oneFood-+${food.id}" class="btn btn-danger btn-xs delete-food" type="submit" value="delete">
+					<button th:id="'oneFood-'+${food.id}" class="btn btn-danger btn-xs delete-food" type="submit" value="delete">
 					<span class="fa fa-times"></span>Delete</button>
 				</td>
 				</tr>
