@@ -9,8 +9,7 @@ Year - 4</h4>
 
 <h3><i>Project Overview</h3>
 <p>
-The aim of the project was to develop an efﬁcient SprinBoot Java web application for order
-ing food online with collaborative ﬁltering and search engine to simplify user experience in
+The aim of the project was to develop an efﬁcient SprinBoot Java web application for ordering food online with collaborative ﬁltering and search engine to simplify user experience in
 decision making.
 
 </p>
