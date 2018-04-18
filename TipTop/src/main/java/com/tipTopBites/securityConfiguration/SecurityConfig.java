@@ -40,7 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/foodDetail",
 			"/searchByCategory",
 			"/searchByNumberOfCalories",
-			"/calories"
+			"/calories",
+			"/searchFood"
 			
 	};
 

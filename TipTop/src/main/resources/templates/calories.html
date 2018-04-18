@@ -103,7 +103,7 @@
                                             th:text="${#numbers.formatDecimal(food.price, 0 , 'COMMA', 2, 'POINT')}"></span></span>
 
 
-                                        <p th:utext="${#strings.abbreviate(food.description, 500)}"></p>
+                                        <p th:utext="${#strings.abbreviate(food.description, 1600)}"></p>
                                     </div>
                                 </div>
                             </div>
@@ -122,19 +122,19 @@
 
 <div th:replace="header :: body-bottom-scripts"/>
 <script>
-		$(document).ready(function() {
-			$('#foodList').DataTable({
-				"lengthMenu":[[5,10,15,20,-1],[5,10,15,20,"All"]],
-				"ordering":false,
-				stateSave:true
-			});
-			
-			$("#foodList").on('page.dt', function() {
-				$('html, body').animate({
-					scrollTop: $('#foodList').offset().top
-				}, 200);
-			});
-		});
+$(document).ready(function() {
+	$('#foodList').DataTable({
+		"lengthMenu":[[5,10,15,20,-1],[5,10,15,20,"All"]],
+		"ordering":false,
+		stateSave:true
+	});
+	
+	$("#foodList").on('page.dt', function() {
+		$('html, body').animate({
+			scrollTop: $('#foodList').offset().top
+		}, 200);
+	});
+});
 	</script>
 </body>
 </html>

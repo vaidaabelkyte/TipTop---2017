@@ -24,8 +24,8 @@ public class TipTopBitesApplication implements CommandLineRunner {
 		User user1 = new User();
 		user1.setFirstName("vaida");
 		user1.setLastName("abelkyte");
-		user1.setUsername("v");
-		user1.setPassword(SecurityUtility.passwordEncoder().encode("a"));
+		user1.setUsername("spring");
+		user1.setPassword(SecurityUtility.passwordEncoder().encode("boot"));
 		user1.setEmail("123@mail.com");
 		Set<UserRole> userRoles = new HashSet<>();
 		Role role1= new Role();
