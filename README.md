@@ -72,8 +72,7 @@ In order to use and connect to database, need to create schema before running th
 This step can be done by running a command in Wamp server MySql console window:<br>
 <strong>CREATE DATABASE tiptopdatabase;</strong><br>
 <br>
-Or if there is a workbench installed, just by creating a new schema with name  <strong>”tiptop
-database”.</strong>
+Or if there is a workbench installed, just by creating a new schema with name  <strong>”tiptopdatabase”.</strong>
 <br><br>
 Note that data source name and password in the application properties might need to be
 changed to your database connection credentials.<br>
